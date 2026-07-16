@@ -510,3 +510,90 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(sample);
   else sample();
 })();
+
+/* ---------- skill ball pit (Matter.js) ---------- */
+(function initSkillPit() {
+  const pit = document.getElementById("pit");
+  if (!pit || prefersReduced || typeof Matter === "undefined") return;
+  document.documentElement.classList.add("pit-on");
+
+  const ITEMS = [
+    ["SQL", "data"], ["PYTHON / PANDAS", "data"], ["TABLEAU", "data"], ["POWER BI", "data"],
+    ["A/B TESTING", "data"], ["GCP / BIGQUERY", "data"], ["REGRESSION", "data"],
+    ["RAG", "ai"], ["LLM EVALS", "ai"], ["PROMPT ENGINEERING", "ai"], ["LANGCHAIN", "ai"],
+    ["LANGGRAPH", "ai"], ["CHROMADB", "ai"], ["HYBRID SEARCH", "ai"], ["STRUCTURED OUTPUTS", "ai"],
+    ["FINE-TUNING (LORA)", "ai"], ["MCP", "ai"], ["REC SYSTEMS", "ai"],
+    ["FASTAPI / FLASK", "eng"], ["REACT", "eng"], ["DOCKER", "eng"], ["CI/CD", "eng"], ["GIT", "eng"],
+    ["MOVIES + TV", "hobby"],
+  ];
+
+  const { Engine, Runner, Bodies, Composite, Mouse, MouseConstraint, Body } = Matter;
+  let started = false;
+
+  function start() {
+    if (started) return;
+    started = true;
+    const W = pit.clientWidth, H = pit.clientHeight;
+    const engine = Engine.create();
+    engine.gravity.y = 1.1;
+
+    const wallOpts = { isStatic: true, restitution: 0.4 };
+    Composite.add(engine.world, [
+      Bodies.rectangle(W / 2, H + 30, W + 200, 60, wallOpts),      // floor
+      Bodies.rectangle(-30, H / 2, 60, H * 4, wallOpts),           // left
+      Bodies.rectangle(W + 30, H / 2, 60, H * 4, wallOpts),        // right
+      Bodies.rectangle(W / 2, -1900, W + 200, 60, wallOpts),       // ceiling far above the spawn column
+    ]);
+
+    const balls = [];
+    ITEMS.forEach(([label, kind], i) => {
+      const el = document.createElement("span");
+      el.className = "pit__ball pit__ball--" + kind;
+      el.textContent = label;
+      pit.appendChild(el);
+      const bw = el.offsetWidth, bh = el.offsetHeight;
+      const x = 60 + ((i * 137) % Math.max(60, W - 120 - bw));
+      const y = -80 - i * 64;
+      const body = Bodies.rectangle(x, y, bw, bh, {
+        chamfer: { radius: bh / 2 },
+        restitution: 0.35,
+        friction: 0.25,
+        frictionAir: 0.012,
+        angle: (Math.random() - 0.5) * 0.5,
+      });
+      Composite.add(engine.world, body);
+      balls.push({ el, body, bw, bh });
+    });
+
+    const mouse = Mouse.create(pit);
+    const mc = MouseConstraint.create(engine, {
+      mouse, constraint: { stiffness: 0.15, damping: 0.1, render: { visible: false } },
+    });
+    Composite.add(engine.world, mc);
+    // Matter's mouse hijacks wheel + touch scroll — give scrolling back to the page
+    mouse.element.removeEventListener("wheel", mouse.mousewheel);
+    mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+    mouse.element.removeEventListener("touchstart", mouse.mousedown);
+    mouse.element.removeEventListener("touchmove", mouse.mousemove);
+    mouse.element.removeEventListener("touchend", mouse.mouseup);
+
+    Runner.run(Runner.create(), engine);
+    (function sync() {
+      requestAnimationFrame(sync);
+      for (const b of balls) {
+        const { x, y } = b.body.position;
+        b.el.style.transform =
+          `translate(${x - b.bw / 2}px, ${y - b.bh / 2}px) rotate(${b.body.angle}rad)`;
+        // rescue escapees
+        if (y > H + 300) {
+          Body.setPosition(b.body, { x: 80 + Math.random() * (W - 160), y: -60 });
+          Body.setVelocity(b.body, { x: 0, y: 0 });
+        }
+      }
+    })();
+  }
+
+  new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) start();
+  }, { threshold: 0.3 }).observe(pit);
+})();
