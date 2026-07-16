@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vatsal Doshi — AI Engineer & Data Analyst</title>
+  <meta name="description" content="Vatsal Doshi builds LLM/RAG systems and the analytics that prove they work. AI Engineer at Connyct. Chicago, IL." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0b'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23b9ff2c' font-family='monospace'>V</text></svg>" />
+</head>
+<body>
+
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav__logo mono" href="#top">vatsal<span class="accent">.</span>doshi</a>
+    <nav class="nav__links mono">
+      <a href="#about">ABOUT</a>
+      <a href="#experience">EXPERIENCE</a>
+      <a href="#work">WORK</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <canvas class="hero__grid" id="dotgrid" aria-hidden="true"></canvas>
+      <div class="hero__spot" aria-hidden="true"></div>
+      <p class="hero__eyebrow mono" data-load="1">
+        <span class="accent">//</span> AI ENGINEER · DATA ANALYST<span class="caret" aria-hidden="true"></span>
+      </p>
+      <h1 class="hero__title" aria-label="Vatsal Doshi">
+        <span class="hero__line"><span class="hero__word" data-split>VATSAL</span></span>
+        <span class="hero__line"><span class="hero__word hero__word--accent" data-split>DOSHI</span></span>
+      </h1>
+      <div class="hero__foot">
+        <p class="hero__blurb" data-load="2">
+          I build LLM/RAG systems — and the analytics that prove they work.
+          Currently shipping recommendations to <span class="accent">50K+ daily queries</span> as
+          AI&nbsp;Engineer at&nbsp;Connyct.
+        </p>
+        <div class="hero__meta mono" data-load="3">
+          <span>CHICAGO, IL</span>
+          <span>41.88°N&nbsp;/&nbsp;87.63°W</span>
+          <button type="button" id="termHint" class="term-hint">TERMINAL&nbsp;<span class="accent">[/]</span></button>
+          <span class="hero__scrollhint">SCROLL<span class="hero__arrow">↓</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="tape" aria-hidden="true">
+      <div class="tape__track mono">
+        <span>RAG PIPELINES — LLM EVALS — RECOMMENDATION ENGINES — SQL &amp; PYTHON — LANGCHAIN — AGENT ORCHESTRATION — PROMPT ENGINEERING — STRUCTURED OUTPUTS — TABLEAU — A/B TESTING — HYBRID SEARCH — PANDAS — GCP —&nbsp;</span>
+        <span>RAG PIPELINES — LLM EVALS — RECOMMENDATION ENGINES — SQL &amp; PYTHON — LANGCHAIN — AGENT ORCHESTRATION — PROMPT ENGINEERING — STRUCTURED OUTPUTS — TABLEAU — A/B TESTING — HYBRID SEARCH — PANDAS — GCP —&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- ============ STATS ============ -->
+    <section class="section stats" id="proof">
+      <div class="section__head" data-reveal>
+        <span class="section__num mono">01</span>
+        <span class="section__name mono">PROOF, NOT ADJECTIVES</span>
+      </div>
+      <div class="stats__grid">
+        <div class="stat" data-reveal>
+          <div class="stat__value"><span data-count="50" data-suffix="K+">0</span></div>
+          <p class="stat__label mono">DAILY QUERIES SERVED BY A REC ENGINE I TUNE AT CONNYCT</p>
+        </div>
+        <div class="stat" data-reveal>
+          <div class="stat__value"><span data-count="95" data-suffix="%+">0</span></div>
+          <p class="stat__label mono">CITATION ACCURACY ON A RAG SYSTEM DELIVERED TO ELASTIC — UP FROM 90%</p>
+        </div>
+        <div class="stat" data-reveal>
+          <div class="stat__value"><span data-count="10" data-prefix="&lt;" data-suffix="s">0</span></div>
+          <p class="stat__label mono">PARTNER DOC SEARCH TIME — DOWN FROM 10+ MINUTES</p>
+        </div>
+        <div class="stat" data-reveal>
+          <div class="stat__value"><span data-count="75" data-suffix="%">0</span></div>
+          <p class="stat__label mono">MANUAL REPORTING TIME CUT FOR A DC NONPROFIT SERVING 1,500+ STUDENTS</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
+      <div class="section__head" data-reveal>
+        <span class="section__num mono">02</span>
+        <span class="section__name mono">ABOUT ME</span>
+      </div>
+      <div class="about__grid">
+        <p class="about__statement" data-reveal>
+          The AI proposes.<br/>Deterministic code executes.<br/>
+          <span class="dim">And every number gets a defense.</span>
+        </p>
+        <div class="about__side" data-reveal>
+          <p class="about__text">
+            I'm Vatsal — an engineer from India, via an M.S. at the University of Maryland, now working
+            remotely from Chicago. Days go to Connyct, where I run the AI features of a short-video app
+            for college students; nights go to building tools like Switchboard and Marquee — a movies + TV
+            tracker I built because I log everything I watch.
+          </p>
+          <p class="about__text">
+            I work the full loop: user interviews → SQL/pandas analysis → LLM systems in production → dashboards
+            that tell leadership the truth. My projects share one rule — models are never trusted with what code
+            can verify. Retrieval gets test suites, recommendations cite their sources, and migrations ship with
+            rollback plans.
+          </p>
+          <div class="about__skills">
+            <div class="skillgroup">
+              <span class="skillgroup__label mono">DATA &amp; ANALYTICS</span>
+              <div class="chips mono"><span>SQL</span><span>PYTHON / PANDAS</span><span>TABLEAU</span><span>POWER BI</span><span>A/B TESTING</span><span>REGRESSION</span><span>GCP / BIGQUERY</span></div>
+            </div>
+            <div class="skillgroup">
+              <span class="skillgroup__label mono">AI / LLM</span>
+              <div class="chips mono"><span>RAG</span><span>LLM EVALS</span><span>PROMPT ENGINEERING</span><span>LANGCHAIN / LANGGRAPH</span><span>CHROMADB</span><span>HYBRID SEARCH</span><span>STRUCTURED OUTPUTS</span><span>FINE-TUNING (LORA/PEFT)</span><span>MCP / COMPUTER-USE AGENTS</span><span>REC SYSTEMS</span></div>
+            </div>
+            <div class="skillgroup">
+              <span class="skillgroup__label mono">ENGINEERING</span>
+              <div class="chips mono"><span>FLASK / FASTAPI</span><span>REACT</span><span>DOCKER</span><span>CI/CD</span><span>GIT</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section xp" id="experience">
+      <div class="section__head" data-reveal>
+        <span class="section__num mono">03</span>
+        <span class="section__name mono">EXPERIENCE</span>
+      </div>
+
+      <div class="xp__rows">
+        <div class="xp__row" data-reveal>
+          <span class="xp__dates mono">2026 —<br/>NOW</span>
+          <div class="xp__body">
+            <h3 class="xp__role">AI Engineer <span class="xp__at">@ Connyct</span></h3>
+            <p class="xp__desc">Short-video social platform for college students, with a Warner Music Group content partnership. Scaled the content recommendation engine to 50K+ daily queries; 92% user satisfaction across AI features from 50+ user interviews.</p>
+          </div>
+        </div>
+        <div class="xp__row" data-reveal>
+          <span class="xp__dates mono">2025</span>
+          <div class="xp__body">
+            <h3 class="xp__role">AI Engineer <span class="xp__at">@ Elastic — capstone consulting, UMD</span></h3>
+            <p class="xp__desc">Built and delivered the Partner-Docs RAG assistant below — hybrid retrieval, 50–60% latency cut, a 25-case accuracy suite, and iterative delivery with Elastic client stakeholders.</p>
+          </div>
+        </div>
+        <div class="xp__row" data-reveal>
+          <span class="xp__dates mono">2025</span>
+          <div class="xp__body">
+            <h3 class="xp__role">Data Analyst Intern <span class="xp__at">@ Tech Turn Up</span></h3>
+            <p class="xp__desc">Sole data analyst for a DC nonprofit teaching 1,500+ K-12 students. Built the analytics stack from scratch — 8 Tableau dashboard pipelines, 75% less manual reporting, and cohort analysis that drove an executive restructuring.</p>
+          </div>
+        </div>
+        <div class="xp__row" data-reveal>
+          <span class="xp__dates mono">EDU</span>
+          <div class="xp__body">
+            <h3 class="xp__role">M.S. Information Systems <span class="xp__at">@ University of Maryland</span></h3>
+            <p class="xp__desc">B.E. Computer Engineering, Gujarat Technological University — CGPA 3.8/4.0. Certified ScrumMaster; Google Project Management Certificate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="section work" id="work">
+      <div class="section__head" data-reveal>
+        <span class="section__num mono">04</span>
+        <span class="section__name mono">SELECTED WORK</span>
+      </div>
+
+      <ul class="work__list">
+        <li class="work__item" data-reveal>
+          <div class="work__row">
+            <span class="work__index mono">001</span>
+            <div class="work__main">
+              <h3 class="work__title">Switchboard</h3>
+              <p class="work__desc">AI data-migration copilot. Legacy CRM export in, clean import out — the LLM proposes mappings and consultant-style questions; deterministic pandas executes. Days of onboarding → under 3 minutes.</p>
+              <div class="work__tags mono"><span>PYTHON</span><span>PANDAS</span><span>CLAUDE API</span><span>REACT</span></div>
+            </div>
+            <span class="work__metric mono"><em>DAYS → &lt;3 MIN</em></span>
+          </div>
+        </li>
+
+        <li class="work__item" data-reveal>
+          <div class="work__row">
+            <span class="work__index mono">002</span>
+            <div class="work__main">
+              <h3 class="work__title">ColdOpen</h3>
+              <p class="work__desc">AI demo engine for sales teams. Paste a prospect's URL → a tailored interactive demo, a 4-beat talk track, and an ROI brief — bound together by a single sales thesis so they never contradict.</p>
+              <div class="work__tags mono"><span>FASTAPI</span><span>REACT</span><span>CLAUDE STRUCTURED OUTPUTS</span></div>
+            </div>
+            <span class="work__metric mono"><em>URL → DEMO IN ~37s</em></span>
+          </div>
+        </li>
+
+        <li class="work__item" data-reveal>
+          <div class="work__row">
+            <span class="work__index mono">003</span>
+            <div class="work__main">
+              <h3 class="work__title">Marquee</h3>
+              <p class="work__desc">Movies + TV tracker with an AI taste engine. Recommendations cite the films of yours they reason from, match scores are honest, and every AI suggestion is verified against TMDB before it renders.</p>
+              <div class="work__tags mono"><span>REACT</span><span>FASTAPI</span><span>CLAUDE</span><span>TMDB</span><span>PANDAS</span></div>
+            </div>
+            <span class="work__metric mono"><em>TASTE, EXPLAINED</em></span>
+          </div>
+        </li>
+
+        <li class="work__item" data-reveal>
+          <div class="work__row">
+            <span class="work__index mono">004</span>
+            <div class="work__main">
+              <h3 class="work__title">Partner-Docs RAG <span class="work__client mono">FOR ELASTIC (NYSE: ESTC)</span></h3>
+              <p class="work__desc">Production-grade document assistant for Elastic's global partner program. Hybrid BM25 + vector retrieval over 1,900 chunks, page-level citations, validated across 5 LLM providers with client stakeholders.</p>
+              <div class="work__tags mono"><span>LANGCHAIN</span><span>CHROMADB</span><span>FLASK</span><span>HYBRID SEARCH</span></div>
+            </div>
+            <span class="work__metric mono"><em>90% → 95%+ CITATIONS</em></span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <div class="section__head" data-reveal>
+        <span class="section__num mono">05</span>
+        <span class="section__name mono">CONTACT</span>
+      </div>
+      <p class="contact__cta mono" data-reveal>OPEN TO DATA / AI ANALYST &amp; RAG-LLM ENGINEER ROLES</p>
+      <a class="contact__email" href="mailto:vatsal.doshi.cs@gmail.com" data-reveal>
+        <span data-split>vatsal.doshi.cs@gmail.com</span>
+        <span class="contact__arrow accent">→</span>
+      </a>
+      <div class="contact__links mono" data-reveal>
+        <a href="https://www.linkedin.com/in/vatsal-doshi-" target="_blank" rel="noopener">LINKEDIN ↗</a>
+        <a href="https://github.com/ScriptedShadows" target="_blank" rel="noopener">GITHUB ↗</a>
+        <a href="tel:+12408102726">+1 (240) 810-2726</a>
+      </div>
+      <p class="contact__hint mono" data-reveal>prefer a CLI? press <span class="accent">[/]</span> and type 'help'. there are secrets.</p>
+    </section>
+
+  </main>
+
+  <div class="term" id="term" hidden>
+    <div class="term__bar mono">
+      <span class="term__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>vatsal@portfolio — zsh</span>
+      <button class="term__close mono" id="termClose" aria-label="Close terminal">ESC ✕</button>
+    </div>
+    <div class="term__out mono" id="termOut" aria-live="polite"></div>
+    <form class="term__inrow mono" id="termForm">
+      <span class="term__prompt accent">➜</span>
+      <input class="term__input mono" id="termInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type 'help' and hit enter" aria-label="terminal input" />
+    </form>
+  </div>
+
+  <footer class="footer mono">
+    <span>© 2026 VATSAL DOSHI</span>
+    <span>DESIGNED &amp; BUILT BY HAND — NO TEMPLATE · <button type="button" class="footer__egg mono" id="footerEgg">PSST: TRY [/]</button></span>
+    <span class="footer__time" id="localtime">CHICAGO —:—</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
