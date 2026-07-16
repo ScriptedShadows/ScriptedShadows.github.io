@@ -524,7 +524,7 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
     ["LANGGRAPH", "ai"], ["CHROMADB", "ai"], ["HYBRID SEARCH", "ai"], ["STRUCTURED OUTPUTS", "ai"],
     ["FINE-TUNING (LORA)", "ai"], ["MCP", "ai"], ["REC SYSTEMS", "ai"],
     ["FASTAPI / FLASK", "eng"], ["REACT", "eng"], ["DOCKER", "eng"], ["CI/CD", "eng"], ["GIT", "eng"],
-    ["MOVIES + TV", "hobby"], ["FORMULA 1", "hobby"], ["TRAVEL", "hobby"],
+    ["CINEPHILE", "hobby"], ["FORMULA 1", "hobby"], ["TRAVEL", "hobby"],
     ["ROLLER COASTERS", "hobby"], ["BOBA", "hobby"],
   ];
 
