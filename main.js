@@ -616,6 +616,8 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
     "→ WATCH NEXT: <b>MONEYBALL</b> — talky, numbers-drunk, quietly ruthless. proof, not adjectives: the movie.",
   ];
   const OUTRO = ' <span class="dim">— hardcoded party trick; the real engine reads your whole diary.</span> <a href="https://github.com/ScriptedShadows/marquee" target="_blank" rel="noopener">VIA MARQUEE ↗</a>';
+  const POSTERS = ["arrival", "the-bear", "boy-heron", "moneyball"];
+  const posterEl = document.getElementById("tastePoster");
 
   let timer = null;
   opts.addEventListener("click", (e) => {
@@ -623,6 +625,10 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
     if (!btn) return;
     opts.querySelectorAll("button").forEach((b) => b.classList.remove("is-picked"));
     btn.classList.add("is-picked");
+    if (posterEl) {
+      posterEl.src = "assets/posters/" + POSTERS[+btn.dataset.pick] + ".jpg";
+      posterEl.hidden = false;
+    }
     const full = READS[+btn.dataset.pick];
     clearInterval(timer);
     if (prefersReduced) { out.innerHTML = full + OUTRO; return; }

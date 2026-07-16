@@ -57,18 +57,19 @@
 
     <!-- ============ TASTE TEST ============ -->
     <section class="taste" id="tastetest">
-      <div class="taste__row">
-        <span class="taste__label mono"><span class="accent">//</span> TASTE TEST — PICK ONE, I'LL READ YOU</span>
-        <div class="taste__options mono" id="tasteOptions">
-          <button type="button" data-pick="0">BLADE RUNNER 2049</button>
-          <button type="button" data-pick="1">WHIPLASH</button>
-          <button type="button" data-pick="2">SPIRITED AWAY</button>
-          <button type="button" data-pick="3">THE SOCIAL NETWORK</button>
-        </div>
+      <span class="taste__label mono"><span class="accent">//</span> TASTE TEST — PICK ONE, I'LL READ YOU</span>
+      <div class="taste__options" id="tasteOptions">
+        <button type="button" data-pick="0"><img src="assets/posters/blade-runner-2049.jpg" alt="Blade Runner 2049" loading="lazy"><span class="mono">BLADE RUNNER 2049</span></button>
+        <button type="button" data-pick="1"><img src="assets/posters/whiplash.jpg" alt="Whiplash" loading="lazy"><span class="mono">WHIPLASH</span></button>
+        <button type="button" data-pick="2"><img src="assets/posters/spirited-away.jpg" alt="Spirited Away" loading="lazy"><span class="mono">SPIRITED AWAY</span></button>
+        <button type="button" data-pick="3"><img src="assets/posters/social-network.jpg" alt="The Social Network" loading="lazy"><span class="mono">THE SOCIAL NETWORK</span></button>
       </div>
-      <p class="taste__result mono" id="tasteResult" aria-live="polite">
-        <span class="dim">four films, one diagnosis. choose.</span>
-      </p>
+      <div class="taste__verdict">
+        <img class="taste__rec" id="tastePoster" alt="" hidden>
+        <p class="taste__result mono" id="tasteResult" aria-live="polite">
+          <span class="dim">four films, one diagnosis. choose.</span>
+        </p>
+      </div>
     </section>
 
     <!-- ============ MARQUEE ============ -->
@@ -205,6 +206,7 @@
         <li class="work__item" data-reveal>
           <a class="work__row" href="https://github.com/ScriptedShadows/switchboard" target="_blank" rel="noopener">
             <span class="work__index mono">001</span>
+            <img class="work__thumb" src="assets/projects/switchboard.jpg" alt="Switchboard routing board" loading="lazy">
             <div class="work__main">
               <h3 class="work__title">Switchboard <span class="work__ext accent">↗</span></h3>
               <p class="work__desc">AI data-migration copilot. Legacy CRM export in, clean import out — the LLM proposes mappings and consultant-style questions; deterministic pandas executes. Days of onboarding → under 3 minutes.</p>
@@ -217,6 +219,7 @@
         <li class="work__item" data-reveal>
           <a class="work__row" href="https://github.com/ScriptedShadows/coldopen" target="_blank" rel="noopener">
             <span class="work__index mono">002</span>
+            <img class="work__thumb" src="assets/projects/coldopen.jpg" alt="ColdOpen dossier" loading="lazy">
             <div class="work__main">
               <h3 class="work__title">ColdOpen <span class="work__ext accent">↗</span></h3>
               <p class="work__desc">AI demo engine for sales teams. Paste a prospect's URL → a tailored interactive demo, a 4-beat talk track, and an ROI brief — bound together by a single sales thesis so they never contradict.</p>
@@ -229,6 +232,7 @@
         <li class="work__item" data-reveal>
           <a class="work__row" href="https://github.com/ScriptedShadows/marquee" target="_blank" rel="noopener">
             <span class="work__index mono">003</span>
+            <img class="work__thumb" src="assets/projects/marquee.jpg" alt="Marquee home" loading="lazy">
             <div class="work__main">
               <h3 class="work__title">Marquee <span class="work__ext accent">↗</span></h3>
               <p class="work__desc">Movies + TV tracker with an AI taste engine. Recommendations cite the films of yours they reason from, match scores are honest, and every AI suggestion is verified against TMDB before it renders.</p>
@@ -241,6 +245,7 @@
         <li class="work__item" data-reveal>
           <div class="work__row">
             <span class="work__index mono">004</span>
+            <div class="work__thumb work__thumb--nda mono"><span>CLIENT WORK</span><span class="dim">NO PUBLIC ARTIFACT</span></div>
             <div class="work__main">
               <h3 class="work__title">Partner-Docs RAG <span class="work__client mono">FOR ELASTIC (NYSE: ESTC)</span></h3>
               <p class="work__desc">Production-grade document assistant for Elastic's global partner program. Hybrid BM25 + vector retrieval over 1,900 chunks, page-level citations, validated across 5 LLM providers with client stakeholders.</p>
@@ -289,6 +294,7 @@
   <footer class="footer mono">
     <span>© 2026 VATSAL DOSHI</span>
     <span>DESIGNED &amp; BUILT BY HAND — NO TEMPLATE · <button type="button" class="footer__egg mono" id="footerEgg">PSST: TRY [/]</button></span>
+    <span>POSTERS: TMDB</span>
     <span class="footer__time" id="localtime">CHICAGO —:—</span>
   </footer>
 
