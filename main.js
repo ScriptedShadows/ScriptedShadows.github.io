@@ -602,3 +602,41 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
     if (entries[0].isIntersecting) start();
   }, { threshold: 0.3 }).observe(pit);
 })();
+
+/* ---------- taste test ---------- */
+(function initTasteTest() {
+  const opts = document.getElementById("tasteOptions");
+  const out = document.getElementById("tasteResult");
+  if (!opts || !out) return;
+
+  const READS = [
+    "→ WATCH NEXT: <b>ARRIVAL</b> — you want sci-fi that aches, not explodes. (And <b>DARK</b>, if you have 26 hours to lose.)",
+    "→ WATCH NEXT: <b>THE BEAR</b>, SEASON ONE — same tempo, swap drumsticks for knives. not quite my tempo either.",
+    "→ WATCH NEXT: <b>THE BOY AND THE HERON</b> — and if you've finished Ghibli: <b>WOLF CHILDREN</b>. bring tissues.",
+    "→ WATCH NEXT: <b>MONEYBALL</b> — talky, numbers-drunk, quietly ruthless. proof, not adjectives: the movie.",
+  ];
+  const OUTRO = ' <span class="dim">— hardcoded party trick; the real engine reads your whole diary.</span> <a href="https://github.com/ScriptedShadows/marquee" target="_blank" rel="noopener">VIA MARQUEE ↗</a>';
+
+  let timer = null;
+  opts.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-pick]");
+    if (!btn) return;
+    opts.querySelectorAll("button").forEach((b) => b.classList.remove("is-picked"));
+    btn.classList.add("is-picked");
+    const full = READS[+btn.dataset.pick];
+    clearInterval(timer);
+    if (prefersReduced) { out.innerHTML = full + OUTRO; return; }
+    // type it out, then append the outro
+    let i = 0;
+    const plain = full.replace(/<[^>]+>/g, "");
+    out.textContent = "";
+    timer = setInterval(() => {
+      i += 2;
+      out.textContent = plain.slice(0, i);
+      if (i >= plain.length) {
+        clearInterval(timer);
+        out.innerHTML = full + OUTRO;
+      }
+    }, 14);
+  });
+})();
