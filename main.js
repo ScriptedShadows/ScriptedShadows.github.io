@@ -524,7 +524,8 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
     ["LANGGRAPH", "ai"], ["CHROMADB", "ai"], ["HYBRID SEARCH", "ai"], ["STRUCTURED OUTPUTS", "ai"],
     ["FINE-TUNING (LORA)", "ai"], ["MCP", "ai"], ["REC SYSTEMS", "ai"],
     ["FASTAPI / FLASK", "eng"], ["REACT", "eng"], ["DOCKER", "eng"], ["CI/CD", "eng"], ["GIT", "eng"],
-    ["MOVIES + TV", "hobby"],
+    ["MOVIES + TV", "hobby"], ["FORMULA 1", "hobby"], ["TRAVEL", "hobby"],
+    ["ROLLER COASTERS", "hobby"], ["BOBA", "hobby"],
   ];
 
   const { Engine, Runner, Bodies, Composite, Mouse, MouseConstraint, Body } = Matter;
@@ -551,16 +552,20 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
       el.className = "pit__ball pit__ball--" + kind;
       el.textContent = label;
       pit.appendChild(el);
-      const bw = el.offsetWidth, bh = el.offsetHeight;
-      const x = 60 + ((i * 137) % Math.max(60, W - 120 - bw));
+      let bw, bh, body;
+      const x = 60 + ((i * 137) % Math.max(60, W - 180));
       const y = -80 - i * 64;
-      const body = Bodies.rectangle(x, y, bw, bh, {
-        chamfer: { radius: bh / 2 },
-        restitution: 0.35,
-        friction: 0.25,
-        frictionAir: 0.012,
-        angle: (Math.random() - 0.5) * 0.5,
-      });
+      const opts = { restitution: 0.35, friction: 0.25, frictionAir: 0.012, angle: (Math.random() - 0.5) * 0.5 };
+      if (kind === "hobby") {
+        // shiyunlu-style orb: a real circle, sized to its label
+        const d = Math.max(el.offsetWidth * 0.78, 76);
+        el.style.width = el.style.height = d + "px";
+        bw = bh = d;
+        body = Bodies.circle(x, y, d / 2, { ...opts, restitution: 0.55 });
+      } else {
+        bw = el.offsetWidth; bh = el.offsetHeight;
+        body = Bodies.rectangle(x, y, bw, bh, { ...opts, chamfer: { radius: bh / 2 } });
+      }
       Composite.add(engine.world, body);
       balls.push({ el, body, bw, bh });
     });
