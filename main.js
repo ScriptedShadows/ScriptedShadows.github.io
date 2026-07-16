@@ -605,34 +605,100 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
 
 /* ---------- taste test ---------- */
 (function initTasteTest() {
+  const gate = document.getElementById("tasteGate");
+  const cta = document.getElementById("tasteCta");
+  const board = document.getElementById("tasteBoard");
   const opts = document.getElementById("tasteOptions");
   const out = document.getElementById("tasteResult");
-  if (!opts || !out) return;
+  const posterEl = document.getElementById("tastePoster");
+  const shuffle = document.getElementById("tasteShuffle");
+  if (!gate || !board || !opts || !out) return;
 
-  const READS = [
-    "→ WATCH NEXT: <b>ARRIVAL</b> — you want sci-fi that aches, not explodes. (And <b>DARK</b>, if you have 26 hours to lose.)",
-    "→ WATCH NEXT: <b>THE BEAR</b>, SEASON ONE — same tempo, swap drumsticks for knives. not quite my tempo either.",
-    "→ WATCH NEXT: <b>THE BOY AND THE HERON</b> — and if you've finished Ghibli: <b>WOLF CHILDREN</b>. bring tissues.",
-    "→ WATCH NEXT: <b>MONEYBALL</b> — talky, numbers-drunk, quietly ruthless. proof, not adjectives: the movie.",
+  // [title, poster, recTitle, recPoster, read]
+  const POOL = [
+    ["BLADE RUNNER 2049","blade-runner-2049","ARRIVAL","arrival","you want sci-fi that aches, not explodes. (and Dark, if you have 26 hours.)"],
+    ["WHIPLASH","whiplash","THE BEAR S1","the-bear","same tempo, swap drumsticks for knives. not quite my tempo either."],
+    ["SPIRITED AWAY","spirited-away","THE BOY AND THE HERON","boy-heron","and if you've finished Ghibli: Wolf Children. bring tissues."],
+    ["THE SOCIAL NETWORK","social-network","MONEYBALL","moneyball","talky, numbers-drunk, quietly ruthless. proof, not adjectives: the movie."],
+    ["INTERSTELLAR","interstellar","CONTACT","contact","faith vs math, twenty years earlier. same tears, more radio."],
+    ["PARASITE","parasite","SHOPLIFTERS","shoplifters","the gentler knife. class warfare where nobody raises their voice."],
+    ["OPPENHEIMER","oppenheimer","THE LIVES OF OTHERS","lives-of-others","men crushed by the machines they built. quieter bomb, same fallout."],
+    ["DUNE: PART TWO","dune-2","LAWRENCE OF ARABIA","lawrence-of-arabia","the desert epic Villeneuve keeps quoting. see it huge or not at all."],
+    ["THE DARK KNIGHT","dark-knight","HEAT","heat","the DNA. the diner scene is the interrogation scene."],
+    ["INCEPTION","inception","PAPRIKA","paprika","the dream heist, animated, four years earlier."],
+    ["PULP FICTION","pulp-fiction","JACKIE BROWN","jackie-brown","QT's most grown-up film and his least logged. fix that."],
+    ["FIGHT CLUB","fight-club","AMERICAN PSYCHO","american-psycho","unreliable men, reliable satire. you already quote both wrong."],
+    ["THE SHAWSHANK REDEMPTION","shawshank","A PROPHET","a-prophet","prison, but France, but colder. hope optional."],
+    ["GOODFELLAS","goodfellas","UNCUT GEMS","uncut-gems","the last 20 minutes of Goodfellas, stretched to feature length."],
+    ["THE GODFATHER","godfather","THE CONFORMIST","the-conformist","where the look of every gangster film you love was invented."],
+    ["LA LA LAND","la-la-land","THE UMBRELLAS OF CHERBOURG","umbrellas-cherbourg","the technicolor heartbreak Chazelle is covering. all sung, all devastating."],
+    ["EVERYTHING EVERYWHERE ALL AT ONCE","eeaao","SWISS ARMY MAN","swiss-army-man","same lunatics, weirder corpse. commit."],
+    ["HER","her","PAST LIVES","past-lives","longing, minus the operating system. somehow lonelier."],
+    ["MAD MAX: FURY ROAD","fury-road","SORCERER","sorcerer","trucks, nitroglycerin, zero irony. the original white-knuckle."],
+    ["NO COUNTRY FOR OLD MEN","no-country","SICARIO","sicario","the border again, scored by pure dread. Villeneuve heard the silence and raised it."],
+    ["GET OUT","get-out","THE INVITATION","the-invitation","another dinner party you should have left an hour ago."],
+    ["HEREDITARY","hereditary","THE WAILING","the-wailing","grief horror, Korean, longer, worse. (complimentary.)"],
+    ["THE GRAND BUDAPEST HOTEL","grand-budapest","PLAYTIME","playtime","Wes's whole grid was invented by Tati in 1967. see the blueprint."],
+    ["KNIVES OUT","knives-out","THE LAST OF SHEILA","last-of-sheila","the puzzle box Rian Johnson keeps citing in interviews. written by Sondheim, yes that one."],
+    ["DRIVE","drive","THIEF","thief","Mann's neon original. the jacket is a lineage."],
+    ["THE TRUMAN SHOW","truman-show","PLEASANTVILLE","pleasantville","the same year, the same cage, in color. criminally underlogged."],
+    ["GONE GIRL","gone-girl","PRISONERS","prisoners","the other great 2010s missing-person nightmare. bring a flashlight."],
+    ["12 ANGRY MEN","twelve-angry-men","ANATOMY OF A FALL","anatomy-of-a-fall","the jury is you now. verdict optional, doubt guaranteed."],
+    ["CASINO ROYALE","casino-royale","MISSION: IMPOSSIBLE — FALLOUT","mi-fallout","the other best action film of the century. the bathroom fight says hi."],
+    ["INTO THE SPIDER-VERSE","spider-verse","THE MITCHELLS VS. THE MACHINES","mitchells-machines","same brushes, family chaos. the dog is a good boy."],
+    ["TOY STORY 3","toy-story-3","PADDINGTON 2","paddington-2","engineered joy, zero cynicism. the sequel that shouldn't work and does."],
+    ["THE SILENCE OF THE LAMBS","silence-lambs","ZODIAC","zodiac","procedural dread perfected. nobody gets caught, everybody's ruined."],
+    ["SE7EN","se7en","MEMORIES OF MURDER","memories-of-murder","the ending Fincher wishes he wrote. Bong got there first."],
+    ["ETERNAL SUNSHINE","eternal-sunshine","SYNECDOCHE, NEW YORK","synecdoche","Kaufman with the safety off. bring a helmet and a will to live."],
+    ["GOOD WILL HUNTING","good-will-hunting","DEAD POETS SOCIETY","dead-poets","the other Williams masterclass. it's not your fault you haven't logged it."],
+    ["RATATOUILLE","ratatouille","CHEF","chef","the same food-joy, live action, more tacos. anyone can cook."],
+    ["THE WOLF OF WALL STREET","wolf-wall-street","THE BIG SHORT","big-short","the hangover after the party. same money, funnier math."],
+    ["AMÉLIE","amelie","PATERSON","paterson","small joys, catalogued daily. a bus driver instead of a waitress."],
+    ["COCO","coco","KUBO AND THE TWO STRINGS","kubo","family, memory, strings. stop-motion that shouldn't be possible."],
+    ["TITANIC","titanic","PORTRAIT OF A LADY ON FIRE","portrait-lady-fire","doomed romance, better painting. the last shot outlives you."],
   ];
   const OUTRO = ' <span class="dim">— hardcoded party trick; the real engine reads your whole diary.</span> <a href="https://github.com/ScriptedShadows/marquee" target="_blank" rel="noopener">VIA MARQUEE ↗</a>';
-  const POSTERS = ["arrival", "the-bear", "boy-heron", "moneyball"];
-  const posterEl = document.getElementById("tastePoster");
 
-  let timer = null;
+  let hand = [], timer = null;
+
+  function deal() {
+    clearInterval(timer);
+    if (posterEl) posterEl.hidden = true;
+    out.innerHTML = '<span class="dim">four films, one diagnosis. choose.</span>';
+    const idx = new Set();
+    while (idx.size < 4) idx.add(Math.floor(Math.random() * POOL.length));
+    hand = [...idx];
+    opts.innerHTML = "";
+    hand.forEach((poolIdx, i) => {
+      const [title, poster] = POOL[poolIdx];
+      const b = document.createElement("button");
+      b.type = "button";
+      b.dataset.pick = i;
+      b.innerHTML = `<img src="assets/posters/${poster}.jpg" alt="${title}" loading="lazy"><span class="mono">${title}</span>`;
+      opts.appendChild(b);
+    });
+  }
+
+  cta.addEventListener("click", () => {
+    gate.hidden = true;
+    board.hidden = false;
+    deal();
+  });
+  if (shuffle) shuffle.addEventListener("click", deal);
+
   opts.addEventListener("click", (e) => {
     const btn = e.target.closest("button[data-pick]");
     if (!btn) return;
     opts.querySelectorAll("button").forEach((b) => b.classList.remove("is-picked"));
     btn.classList.add("is-picked");
+    const [, , recT, recP, read] = POOL[hand[+btn.dataset.pick]];
     if (posterEl) {
-      posterEl.src = "assets/posters/" + POSTERS[+btn.dataset.pick] + ".jpg";
+      posterEl.src = `assets/posters/${recP}.jpg`;
       posterEl.hidden = false;
     }
-    const full = READS[+btn.dataset.pick];
+    const full = `→ WATCH NEXT: <b>${recT}</b> — ${read}`;
     clearInterval(timer);
     if (prefersReduced) { out.innerHTML = full + OUTRO; return; }
-    // type it out, then append the outro
     let i = 0;
     const plain = full.replace(/<[^>]+>/g, "");
     out.textContent = "";

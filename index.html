@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=5" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0b'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23b9ff2c' font-family='monospace'>V</text></svg>" />
 </head>
 <body>
@@ -57,20 +57,24 @@
 
     <!-- ============ TASTE TEST ============ -->
     <section class="taste" id="tastetest">
-      <div class="taste__row">
-        <span class="taste__label mono"><span class="accent">//</span> TASTE TEST — PICK ONE, I'LL READ YOU</span>
-        <div class="taste__options" id="tasteOptions">
-        <button type="button" data-pick="0"><img src="assets/posters/blade-runner-2049.jpg" alt="Blade Runner 2049" loading="lazy"><span class="mono">BLADE RUNNER 2049</span></button>
-        <button type="button" data-pick="1"><img src="assets/posters/whiplash.jpg" alt="Whiplash" loading="lazy"><span class="mono">WHIPLASH</span></button>
-        <button type="button" data-pick="2"><img src="assets/posters/spirited-away.jpg" alt="Spirited Away" loading="lazy"><span class="mono">SPIRITED AWAY</span></button>
-        <button type="button" data-pick="3"><img src="assets/posters/social-network.jpg" alt="The Social Network" loading="lazy"><span class="mono">THE SOCIAL NETWORK</span></button>
-        </div>
+      <div class="taste__gate" id="tasteGate">
+        <span class="taste__label mono"><span class="accent">//</span> SEPARATES THE CINEPHILES FROM THE "I WATCH STUFF" CROWD</span>
+        <button type="button" class="taste__cta mono" id="tasteCta">
+          ★ TRUE CINEPHILE? PROVE IT<span class="caret" aria-hidden="true"></span>
+        </button>
       </div>
-      <div class="taste__verdict">
-        <img class="taste__rec" id="tastePoster" alt="" hidden>
-        <p class="taste__result mono" id="tasteResult" aria-live="polite">
-          <span class="dim">four films, one diagnosis. choose.</span>
-        </p>
+      <div class="taste__board" id="tasteBoard" hidden>
+        <div class="taste__row">
+          <span class="taste__label mono"><span class="accent">//</span> PICK ONE, I'LL READ YOU</span>
+          <div class="taste__options" id="tasteOptions"></div>
+          <button type="button" class="taste__shuffle mono" id="tasteShuffle" title="new hand">RESHUFFLE ⟳</button>
+        </div>
+        <div class="taste__verdict">
+          <img class="taste__rec" id="tastePoster" alt="" hidden>
+          <p class="taste__result mono" id="tasteResult" aria-live="polite">
+            <span class="dim">four films, one diagnosis. choose.</span>
+          </p>
+        </div>
       </div>
     </section>
 
@@ -304,6 +308,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
-  <script src="main.js"></script>
+  <script src="main.js?v=5"></script>
 </body>
 </html>
