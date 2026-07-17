@@ -569,3 +569,7 @@ a.work__row { color: inherit; }
 .taste__shuffle:hover { color: var(--accent); border-color: var(--accent); }
 .taste__board { animation: boardIn 0.45s ease; }
 @keyframes boardIn { from { opacity: 0; transform: translateY(10px); } }
+
+/* experience highlighting */
+.xp__co { color: var(--accent); font-weight: 500; }
+.xp__desc b { color: var(--fg); font-weight: 500; }
