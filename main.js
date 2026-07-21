@@ -348,7 +348,15 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
       "4. see also: '<span class='term__line--accent'>sudo hire-vatsal</span>'"
     ),
     pwd: () => print("/users/vatsal/chicago"),
-    vim: () => print("opening vim... you are now trapped.\ntype '<span class='term__line--accent'>exit</span>' like everyone else."),
+    vim: () => {
+      print("opening vim...");
+      setTimeout(() => {
+        vimMode = true; vimTries = 0;
+        out.innerHTML = "";
+        print("<span class='term__line--dim'>~\n~\n~\n~\n~\n~</span>");
+        print("\"[no name]\" 0 lines <span class='term__line--dim'>— you are now trapped. vim does that.</span>");
+      }, 400);
+    },
     coffee: () => {
       const div = document.createElement("div");
       out.appendChild(div);
@@ -368,6 +376,7 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
   };
 
   let history = [], hIdx = -1;
+  let vimMode = false, vimTries = 0;
 
   function open() {
     term.hidden = false;
@@ -377,7 +386,10 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
     }
     input.focus();
   }
-  function close() { term.hidden = true; }
+  function close() {
+    term.hidden = true;
+    if (vimMode) { vimMode = false; vimTries = 0; out.innerHTML = ""; }
+  }
 
   document.getElementById("termHint").addEventListener("click", open);
   document.getElementById("termClose").addEventListener("click", close);
@@ -399,6 +411,26 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
     const raw = input.value.trim();
     if (!raw) return;
     history.push(raw); hIdx = history.length;
+    if (vimMode) {
+      print("<span class='term__line--dim'>" + raw.replace(/</g, "&lt;") + "</span>");
+      const v = raw.toLowerCase();
+      if (/^(:(w?q|x|qa|quit)!?|zz|exit)$/.test(v)) {
+        vimMode = false; vimTries = 0;
+        out.innerHTML = "";
+        print("you escaped vim. <span class='term__line--dim'>put it on your resume.</span>");
+      } else {
+        vimTries++;
+        let msg;
+        if (v === "i" || v === "a" || v === "o") msg = "-- INSERT -- <span class='term__line--dim'>cute. still trapped.</span>";
+        else if (v === "help" || /^:help/.test(v)) msg = "E149: sorry, no help for the trapped";
+        else if (/^:/.test(v)) msg = "E492: not an editor command: " + v.slice(1).replace(/</g, "&lt;");
+        else msg = "E21: cannot make changes — 'trapped' is set";
+        if (vimTries >= 3) msg += "\n<span class='term__line--dim'>(fine. it's ':q'. it's always ':q'.)</span>";
+        print(msg);
+      }
+      input.value = "";
+      return;
+    }
     print("<span class='term__line--dim'>➜  " + raw.replace(/</g, "&lt;") + "</span>");
     const cmd = raw.toLowerCase();
     if (COMMANDS[cmd]) COMMANDS[cmd]();
