@@ -316,7 +316,30 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
     ls: () => print("proof/  about/  experience/  work/  contact/  <span class='term__line--dim'>taste.db</span>"),
     clear: () => { out.innerHTML = ""; },
     exit: () => close(),
-    "sudo hire-vatsal": () => print("<span class='term__line--accent'>permission granted.</span> drafting offer letter... done.\nemail <a href='mailto:vatsal.doshi.cs@gmail.com'>vatsal.doshi.cs@gmail.com</a> to complete the transaction."),
+    "sudo hire-vatsal": () => {
+      print("<span class='term__line--accent'>permission granted.</span> drafting offer letter...");
+      setTimeout(() => {
+        print(
+          "──────────────────────────────────────\n" +
+          "OFFER LETTER <span class='term__line--dim'>(drafted on your behalf)</span>\n" +
+          "──────────────────────────────────────\n" +
+          "from:  your company\n" +
+          "to:    vatsal doshi\n" +
+          "re:    offer of employment\n" +
+          "\n" +
+          "we'd like to offer you the role of\n" +
+          "ai engineer / data analyst (you do both).\n" +
+          "we saw the particles. we typed vim.\n" +
+          "we get it now.\n" +
+          "\n" +
+          "comp:  competitive. boba stipend included.\n" +
+          "start: two weeks from 'send'.\n" +
+          "──────────────────────────────────────\n" +
+          "to sign and send: type '<span class='term__line--accent'>email</span>'"
+        );
+        out.scrollTop = out.scrollHeight;
+      }, 700);
+    },
     hire: () => print("usage: hire --reasons", "term__line--dim"),
     "hire --reasons": () => print(
       "1. ships — four products in eighteen months, all demoable\n" +
