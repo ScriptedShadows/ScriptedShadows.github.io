@@ -384,8 +384,10 @@ if (timeEl) { tick(); setInterval(tick, 30000); }
     else if (/^cat(\s|$)/.test(cmd)) print("cat: no such file or directory. try 'ls'.", "term__line--dim");
     else if (/^sudo(\s|$)/.test(cmd)) print("sudo: permission denied. unless... try '<span class='term__line--accent'>sudo hire-vatsal</span>'.");
     else if (/^(email|mail)(\s|$)/.test(cmd)) {
-      print("opening your mail client... <span class='term__line--dim'>(the offer letter won't sign itself.)</span>\nif nothing happens: <a href='mailto:vatsal.doshi.cs@gmail.com'>vatsal.doshi.cs@gmail.com</a>");
-      window.location.href = "mailto:vatsal.doshi.cs@gmail.com?subject=re%3A%20completing%20the%20transaction";
+      const addr = "vatsal.doshi.cs@gmail.com";
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(addr).catch(() => {});
+      print("<a href='mailto:" + addr + "'>" + addr + "</a> — <span class='term__line--accent'>copied to clipboard.</span>\nalso nudging your mail app... <span class='term__line--dim'>(if nothing opens, you've got the address.)</span>");
+      window.location.href = "mailto:" + addr + "?subject=re%3A%20completing%20the%20transaction";
     }
     else if (/^echo\s+/.test(cmd)) print(raw.slice(5).replace(/</g, "&lt;"));
     else print("command not found: " + cmd.replace(/</g, "&lt;") + " — try '<span class='term__line--accent'>help</span>'", "term__line--dim");
